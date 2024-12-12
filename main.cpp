@@ -63,7 +63,62 @@ public:
 	}
 };
 
+int test(){
+	std::vector<std::string> a;
+	std::string num;
+	std::string read; 
+	std::cin >> num;
+	std::string buffer = "";
+	for (int i = 0; i <= std::stoi(num); i++){
+		std::getline(std::cin, read);
+		buffer = "";
+		for (int j = 0; j <= read.length(); j ++){
+			if (read[j] != ' '){
+				buffer += read[j];	
+			}
+			else{
+				a.push_back(buffer);	
+				buffer = "";
+			}
+		}
+		a.push_back(buffer);
+	}
+	int numm = std::stoi(num);
+	//std::cout << a.size() / numm << "\n";
+	std::vector<std::vector<float>> array(numm, std::vector<float> (a.size() / numm));
+	
+	
+	for (int i = 1; i < a.size(); i++){
+		//std::cout << "s" <<a[i]<< "s" << "\n";
+		array[(i-1)%numm][(i-1)/(a.size() / numm)] = std::stof(a[i]);
+	}
+	/*
+	for(std::vector<float> i: mat){
+		for(float j : i){
+			std::cout << j << "\n";
+		}
+	}
+	*/
+	CSR_format mat(array);
+	std::cout << "value: ";
+	for (float i: mat.get_value()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	std::cout << "row: ";
+	for (float i: mat.get_row()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	std::cout << "col: ";
+	for (float i: mat.get_col()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	return 0;
+}
 
 int main(){
+	test();
 	return 0;
 }
