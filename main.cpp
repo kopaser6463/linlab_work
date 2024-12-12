@@ -61,6 +61,20 @@ public:
 		}
 		return matrix;
 	}
+
+	std::vector<float> matrix_const_multiply(const float number){
+		for (int i = 0; i < value.size(); i++){
+			value[i] *=  number;
+		}
+	}
+
+	std::vector<float> matrix_summ(){
+
+		
+
+	}
+
+
 };
 
 
