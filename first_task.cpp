@@ -12,7 +12,7 @@ CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 				}
 			}
 		}
-}
+};
 
 float CSR_format::trace(){
     float res = 0;
@@ -22,7 +22,7 @@ float CSR_format::trace(){
         }
     }
     return res;
-}
+};
 
 std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
@@ -30,4 +30,13 @@ std::vector<std::vector<float>> CSR_format::csr_to_std(){
 		matrix[row[i]][col[i]] = value[i];
 	}
 	return matrix;
-}
+};
+
+float CSR_format::matrix_value(int col, int row){
+	for(int i = 0; i < this->row.size(); i ++){
+		if(this->row[i] == row-1 && this->col[i] == col-1){
+			return this->value[i];
+		}
+	}
+	return 0;
+};
