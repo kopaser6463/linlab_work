@@ -1,6 +1,6 @@
 #include <CSR_format.cpp>
 
-	float trace(CSR_format mat){
+float trace(CSR_format mat){
 		float res = 0;
 		for (int i = 0; i < mat.value.size(); i++){
 			if (mat.row[i] == mat.col[i]){
@@ -10,11 +10,12 @@
 		return res;
 	}
 
-	void matrix_const_multiply(const float number, CSR_format mat){
+
+void matrix_const_multiply(const float number, CSR_format mat){
 		for (int i = 0; i < mat.value.size(); i++){
 			mat.value[i] *=  number;
-		}
-	}
+	  }
+}
 
 int test(){
 	std::vector<std::string> a;
