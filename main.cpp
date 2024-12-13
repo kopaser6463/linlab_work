@@ -61,6 +61,14 @@ public:
 		}
 		return matrix;
 	}
+
+	void matrix_const_multiply(const float number){
+		for (int i = 0; i < value.size(); i++){
+			value[i] *=  number;
+		}
+	}
+
+
 };
 
 int test(){
@@ -101,6 +109,24 @@ int test(){
 	}
 
 	CSR_format mat(array);
+	std::cout << "value: ";
+	for (float i: mat.get_value()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	std::cout << "row: ";
+	for (float i: mat.get_row()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	std::cout << "col: ";
+	for (float i: mat.get_col()){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	
+	mat.matrix_const_multiply(2);
+	
 	std::cout << "value: ";
 	for (float i: mat.get_value()){
 		std::cout << i << " ";
