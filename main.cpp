@@ -72,6 +72,8 @@ int test(){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
+	std::cout << mat.matrix_value(1,1); // Не 0 based система
+	std::cout << "\n";
 	return 0;
 }
 

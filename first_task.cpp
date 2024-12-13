@@ -31,3 +31,12 @@ std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	}
 	return matrix;
 }
+
+float CSR_format::matrix_value(int x, int y){
+	for(int i = 0; i < row.size(); i ++){
+		if((row[i] == x-1) && (col[i] == y-1)){
+			return value[i];
+		}
+	}
+	return 0;
+}
