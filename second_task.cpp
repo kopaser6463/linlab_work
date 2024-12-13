@@ -1,4 +1,4 @@
-#include "CSR_format.cpp"
+#include "first_task.cpp"
 
 void matrix_const_multiply(const float number, CSR_format mat){
 		for (int i = 0; i < mat.value.size(); i++){
