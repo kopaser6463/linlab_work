@@ -10,7 +10,7 @@
 		return res;
 	}
 
-//simple
+//simple 
 
 int main(){
 	return 0;
