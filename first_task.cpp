@@ -10,6 +10,8 @@
 		return res;
 	}
 
+//simple
+
 int main(){
 	return 0;
 }
