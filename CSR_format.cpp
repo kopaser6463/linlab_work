@@ -23,6 +23,15 @@ public:
 		}
 	}
 
+    CSR_format(){
+        std::cout << "Enter the number of rows in the matrix: ";
+        std::cin >> n;
+        int i = 0;
+        while (i < n){
+
+        }
+    }
+
 	std::vector<std::vector<float>> csr_to_std(){
 		std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
 		for (int i = 0; i < value.size(); i++){
