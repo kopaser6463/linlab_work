@@ -1,4 +1,4 @@
-#include <CSR_format.cpp>
+#include "CSR_format.cpp"
 
 	float trace(CSR_format mat){
 		float res = 0;
@@ -10,6 +10,7 @@
 		return res;
 	}
 
+<<<<<<< HEAD
 	void matrix_const_multiply(const float number, CSR_format mat){
 		for (int i = 0; i < mat.value.size(); i++){
 			mat.value[i] *=  number;
@@ -90,7 +91,8 @@ int test(){
 	return 0;
 }
 
+=======
+>>>>>>> 0c7bbef926bd7ab4f4103b9c9b9f0647d6d6d5da
 int main(){
-	test();
 	return 0;
 }
