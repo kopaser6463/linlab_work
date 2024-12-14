@@ -62,13 +62,13 @@ arrayb = gen_sparce(5,5,0.1)
 
 array = np.array([[2, 0, 3], [0, 0, 0], [0, 7, 0]])
 arrayb = np.array([[0, 9, 2], [4, 0, 3], [0, 0, 0]])
+
 v1 = vay()
 v2 = vay()
 v1.conv(array)
 v2.conv(arrayb)
 print(np.matmul(np.array(array) , np.array(arrayb)))
-v1.output()
-v2.output()
+
 if 1:
     for i in range(len(v1.values)):
         x = v1.row[i]
