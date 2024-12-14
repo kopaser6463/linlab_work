@@ -1,5 +1,3 @@
-#include <algorithm>
-
 #include "first_task.h"
 
 static CSR_format sum_matrix(CSR_format mat1, CSR_format mat2){
@@ -35,4 +33,24 @@ static CSR_format matrix_const_multiply(const float number, CSR_format mat){
 		mat.value[i] *=  number;
 	}
 	return mat;
+}
+
+static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
+	if (mat1.m == mat2.n){
+		auto A = mat1.csr_to_std();
+		auto B = mat2.csr_to_std();
+		std::vector<std::vector<float>> v_res(mat1.n, std::vector<float> (mat2.m, 0));
+		for(int i = 0; i < mat1.n; i++){
+			for(int j = 0; j < mat2.m; j++){
+				for(int k = 0; k < mat1.m; k++){
+					v_res[i][j] += A[i][k] * B[k][j];
+				}
+			}
+		}
+		CSR_format res(v_res);
+		return v_res;
+	}
+	else{
+		throw std::runtime_error("Matrix multiplication is impossible. The number of columns in the first matrix and the number of rows in the second don't match."); 
+	}
 }
