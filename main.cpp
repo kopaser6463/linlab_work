@@ -2,6 +2,11 @@
 #include "second_task.cpp"
 #include "third_task.cpp"
 
+void test3(){
+	std::vector<std::vector<float>> mat = {{9, 1, 3}, {3, 192, 4}, {-5, 8, 2}};
+	find_det(mat);
+}
+
 int test(){
 	std::vector<std::string> a;
 	std::string num;
@@ -119,6 +124,7 @@ void test2(){
 
 int main(){
     //test();
-	test2();
+	  test2();
+    test3();
     return 0;
 }
