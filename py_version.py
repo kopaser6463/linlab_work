@@ -1,3 +1,7 @@
+import numpy as np
+from random import random, randint, seed
+seed(6)
+
 array = [[1,0,0],[0,0,3]]
 arrayb = [[0,2],[0,1],[0,4]]
 
@@ -9,7 +13,6 @@ for i in range(len(array)):
         #print(s)
 
 import numpy as np
-print(np.matmul(np.array(array) , np.array(arrayb)))
 
 np.array(array) , np.array(arrayb)
 
@@ -40,18 +43,32 @@ class vay:
         for i in range(self.values):
             if self.row[i] == self.col[i]:
                 s+=self.values[i]
-        return s    
+        return s
+
+def gen_sparce(a,b,percentage):
+    arr = np.zeros([a,b])
+    for i in range(a):
+        for ii in range(b):
+            if random() < percentage:
+                arr[i][ii] = randint(0,10)
+
+    return arr.astype(int)
+array = gen_sparce(5,5,0.6)
+arrayb = gen_sparce(5,5,0.1)
+
+
 v1 = vay()
 v2 = vay()
 v1.conv(array)
 v2.conv(arrayb)
+print(np.matmul(np.array(array) , np.array(arrayb)))
 
-if len(v1.values) < len(v2.values):
+if 1:
     for i in range(len(v1.values)):
         x = v1.row[i]
         for ii in range(v2.n):
             #print(v2.by_index(x,ii))
-            if v2.by_index(x,ii) != 0:
+            if v2.by_index(v1.col[i],ii) != 0:
                 #print(v1.by_index(x,v1.col[i]), x, v1.col[i])
                 #print(v2.by_index(v1.col[i],ii), v1.col[i], ii)
                 s = v1.by_index(x,v1.col[i]) * v2.by_index(v1.col[i],ii)
