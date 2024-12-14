@@ -96,10 +96,11 @@ void CSR_format::input(){
 	int numm = std::stoi(num);
 	int numbm = a.size()/numm;
 	
-	std::vector<std::vector<float>> array(numbm, std::vector<float> (numm));
+	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
 	for (int i = 0; i < a.size(); i++){
-		array[(i)/(numm)][(i) % numm] = (float)std::stof(a[i]);
+		array[(i)/(numbm)][(i) % numbm] = (float)std::stof(a[i]);
 	}
+	std::cout << "test" << "\n";
 	this->n = array.size();
 	this->m = array[0].size();
 	for (int i = 0; i < n; i++){
