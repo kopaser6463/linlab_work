@@ -1,5 +1,4 @@
 #include "first_task.h"
-#include "first_task.cpp"
 #include "second_task.cpp"
 #include "third_task.cpp"
 
@@ -8,14 +7,28 @@ void test3(){
 	find_det(mat);
 }
 
-int test(){
-	
-	std::vector<std::vector<float>> array(2, std::vector<float> (3));
-	CSR_format mat(array);
+void task1(){
+	CSR_format mat;
 	mat.input();
-	mat.output();
-	std::cout << "\n";
-	return 0;
+	short num_oper;
+	std::cout<<"Operation numbers:\n1 - matrix trace calculation;\n2 - matrix element output by index and column (numbering from one).\n\nEnter the operation number: ";
+	std::cin>>num_oper;
+	if (num_oper == 1){
+		std::cout<<"Trace = " << mat.trace();
+	}
+	else if (num_oper == 2){
+		int row;
+		int col;
+		std::cout<<"Enter row number: ";
+		std::cin>>row;
+		std::cout<<"Enter col number: ";
+		std::cin>>col;
+		std::cout<<"Element [" << row << "][" << col << "] = " << mat.matrix_value(col, row);
+	}
+	else{
+		std::cout << "ERROR: Invalid operation number entered.";
+	}
+
 }
 
 void test2(){
@@ -46,8 +59,8 @@ void test2(){
 }
 
 int main(){
-    test();
-	test2();
-    test3();
+    task1();
+	// test2();
+    // test3();
     return 0;
 }
