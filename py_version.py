@@ -44,7 +44,11 @@ class vay:
             if self.row[i] == self.col[i]:
                 s+=self.values[i]
         return s
-
+    def output(self):
+        print("value :" + " ".join(map(str, map(int, self.values))))
+        print("row   :" + " ".join(map(str, map(int, self.row))))
+        print("col   :" + " ".join(map(str, map(int, self.col))))
+        print("rows: " + str(self.n) + " cols: " + str(self.m))
 def gen_sparce(a,b,percentage):
     arr = np.zeros([a,b])
     for i in range(a):
@@ -56,6 +60,8 @@ def gen_sparce(a,b,percentage):
 array = gen_sparce(5,5,0.6)
 arrayb = gen_sparce(5,5,0.1)
 
+array = np.array([[2, 0, 3], [0, 0, 0], [0, 7, 0]])
+arrayb = np.array([[0, 9, 2], [4, 0, 3], [0, 0, 0]])
 
 v1 = vay()
 v2 = vay()
@@ -76,3 +82,11 @@ if 1:
                      #v r  c
             #YOU NEED TO SUM THEM IF THEY HAVE SAME INDEXES
             #WHICH I DID NOT MADE BECOUSE I AM LAZY
+
+if 0:
+    for i in range(len(v1.values)):
+        x = v1.row[i]
+        for ii in range(v2.n):
+            if v2.by_index(v1.col[i],ii) != 0:
+                s = v1.by_index(x,v1.col[i]) * v2.by_index(v1.col[i],ii)
+                print(s,x, ii)
