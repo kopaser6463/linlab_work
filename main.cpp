@@ -82,11 +82,6 @@ void task3(){
 	find_det(mat.csr_to_std());
 }
 
-void test3(){
-	std::vector<std::vector<float>> mat = {{9, 1, 3}, {3, 192, 4}, {-5, 8, 2}};
-	find_det(mat);
-}
-
 
 
 void test2(){
@@ -119,8 +114,8 @@ void test2(){
 }
 
 int main(){
-    // task1();
-	// task2();
+    //task1();
+	task2();
 	// task3();
     return 0;
 }

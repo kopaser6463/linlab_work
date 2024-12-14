@@ -32,6 +32,13 @@ static CSR_format sum_matrix(CSR_format mat1, CSR_format mat2){
 			else{
 				iter1++;
 			}
+			if (iter1 == mat1.row.size()){
+				for (iter2; iter2<mat2.row.size(); iter2++){
+					mat1.row.push_back(mat2.row[iter2]);
+					mat1.col.push_back(mat2.col[iter2]);
+					mat1.value.push_back(mat2.value[iter2]);
+				}
+			}
 		}
 		return mat1;
 	}
@@ -50,8 +57,16 @@ static CSR_format sum_matrix(CSR_format mat1, CSR_format mat2){
 */
 static CSR_format matrix_const_multiply(const float number, CSR_format mat){
 	//Чтобы умножить все значения матрицы в данном формате, достаточно домножить все элементы массива values.
-	for (int i = 0; i < mat.value.size(); i++){
-		mat.value[i] *=  number;
+	if (number != 0){
+		for (int i = 0; i < mat.value.size(); i++){
+			mat.value[i] *=  number;
+		}
+	}
+	else{
+		CSR_format res;
+		res.n = mat.n;
+		res.m = mat.m;
+		return res;
 	}
 	return mat;
 }
