@@ -16,5 +16,7 @@ public:
     float trace();
     std::vector<std::vector<float>> csr_to_std();
 	float matrix_value(const int col, const int row);
+	void output();
+	void input();
 };
 #endif //FIRST_TASK_H
