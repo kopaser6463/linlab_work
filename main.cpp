@@ -5,7 +5,7 @@
 
 int test(){
 	
-	std::vector<std::vector<float>> array(1, std::vector<float> (1));
+	std::vector<std::vector<float>> array(2, std::vector<float> (3));
 	CSR_format mat(array);
 	mat.input();
 	mat.output();

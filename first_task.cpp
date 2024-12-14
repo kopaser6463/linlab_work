@@ -47,15 +47,17 @@ void CSR_format::output(){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
-	std::cout << "row: ";
+	std::cout << "row:   ";
 	for (float i: this->row){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
-	std::cout << "col: ";
+	std::cout << "col:   ";
 	for (float i: this->col){
 		std::cout << i << " ";
 	}
+	std::cout << "\n";
+	std::cout << "rows: " << this->n << " " << "cols: " << this->m;
 	std::cout << "\n";
 }
 
@@ -93,9 +95,9 @@ void CSR_format::input(){
 	int numm = std::stoi(num);
 	int numbm = a.size()/numm;
 	
-	std::vector<std::vector<float>> array(numbm, std::vector<float> (numm));
+	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
 	for (int i = 0; i < a.size(); i++){
-		array[(i)/(numm)][(i) % numm] = (float)std::stof(a[i]);
+		array[(i) % numm][(i)/(numm)] = (float)std::stof(a[i]);
 	}
 	this->n = array.size();
 	this->m = array[0].size();
