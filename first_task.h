@@ -13,6 +13,7 @@ public:
 	std::vector<float>value;
 
 	CSR_format(std::vector<std::vector<float>> matrix_std);
+	CSR_format(){};
     float trace();
     std::vector<std::vector<float>> csr_to_std();
 	float matrix_value(const int col, const int row);
