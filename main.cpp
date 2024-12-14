@@ -1,7 +1,7 @@
 #include "first_task.h"
 #include "second_task.cpp"
 #include "third_task.cpp"
-
+#include "first_task.cpp"
 int test(){
 	std::vector<std::string> a;
 	std::string num;
@@ -115,6 +115,12 @@ void test2(){
 	for (int i = 0; i < res.value.size(); i++){
 		std::cout << i << " [" << res.row[i] << "][" << res.col[i] << "] = " << res.value[i] << std::endl;
 	}
+	std::cout << "\n";
+	mat2_1.output();
+	mat2_2.output();
+	std::cout << mat2_1.matrix_value(1,1) << "\n";
+	std::cout << "\n";
+	matrix_multiply_v2(mat2_1, mat2_2);
 }
 
 int main(){
