@@ -15,6 +15,6 @@ public:
 	CSR_format(std::vector<std::vector<float>> matrix_std);
     float trace();
     std::vector<std::vector<float>> csr_to_std();
-	float matrix_value(int x, int y);
+	float matrix_value(const int col, const int row);
 };
 #endif //FIRST_TASK_H
