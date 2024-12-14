@@ -1,5 +1,7 @@
 #include "first_task.h"
 #include <sstream>
+
+//Стандартный метод создания класса разряженной матрицы из обычной.
 CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 		this->n = matrix_std.size();
 		this->m = matrix_std[0].size();
@@ -13,7 +15,7 @@ CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 			}
 		}
 };
-
+//Метод класса, возвращаюший след разряженной матрицы.
 float CSR_format::trace(){
     float res = 0;
     for (int i = 0; i < value.size(); i++){
