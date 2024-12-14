@@ -17,11 +17,6 @@ int test(){
 	std::cout << "\n";
 	return 0;
 }
-int input_output_determ(){
-	return 0;
-	
-	
-}
 
 void test2(){
 	std::vector<std::vector<float>> matrix1 = {{1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 0, 1}};
