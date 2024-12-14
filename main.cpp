@@ -102,7 +102,29 @@ int test(){
 	return 0;
 }
 
+void test2(){
+	std::vector<std::vector<float>> matrix1 = {{1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 0, 1}};
+	std::vector<std::vector<float>> matrix2 = {{0, 1, 0, 1, 1, 0}, {1, 0, 0, 1, 0, 0}};
+	CSR_format mat1(matrix1);
+	CSR_format mat2(matrix2);
+	CSR_format mat = sum_matrix(mat1, mat2);
+	for (int i = 0; i < mat.value.size(); i++){
+		std::cout << i << " [" << mat.row[i] << "][" << mat.col[i] << "] = " << mat.value[i] << std::endl;
+	}
+	std::cout << "\n\n\n";
+	std::vector<std::vector<float>> matrix2_1 = {{2, 0, 3}, {0, 0, 0}, {0, 7, 0}};
+	std::vector<std::vector<float>> matrix2_2 = {{0, 9, 2}, {4, 0, 3}, {0, 0, 0}};
+	CSR_format mat2_1(matrix2_1);
+	CSR_format mat2_2(matrix2_2);
+	CSR_format res = matrix_multiply(mat2_1, mat2_2);
+	for (int i = 0; i < res.value.size(); i++){
+		std::cout << i << " [" << res.row[i] << "][" << res.col[i] << "] = " << res.value[i] << std::endl;
+	}
+}
+
 int main(){
+    //test();
+	  test2();
     test3();
     return 0;
 }
