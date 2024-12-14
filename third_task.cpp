@@ -22,10 +22,10 @@ static void find_det(std::vector<std::vector<float>> mat){
             det *= mat[i][i];
         }
         if (det != 0){
-            std::cout<<"Det = " << det << "\nДа, существует обратная матрица данной." << std::endl;
+            std::cout<<"Det = " << det << "\nYes, there is an inverse matrix of this one." << std::endl;
         }
         else{
-            std::cout<<"Det = " << det << "\nНет, не существует обратная матрица данной." << std::endl;
+            std::cout<<"Det = " << det << "\nNo, there is no inverse matrix for this one." << std::endl;
         }
     }
     else{

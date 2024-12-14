@@ -31,8 +31,63 @@ void task1(){
 	else{
 		std::cout << "ERROR: Invalid operation number entered.";
 	}
-
 }
+
+void task2(){
+	short num_oper;
+	std::cout<<"Operation numbers:\n1 - matrix addition;\n2 - matrix multiplication by scalar;\n3 - matrix multiplication.\n\nEnter the operation number: ";
+	std::cin>>num_oper;
+	std::cin.ignore();
+	if (num_oper == 1){
+		CSR_format mat1;
+		CSR_format mat2;
+		std::cout<<"Enter matrix 1:\n";
+		mat1.input();
+		std::cout<<"Enter matrix 2:\n";
+		mat2.input();
+		CSR_format res = sum_matrix(mat1, mat2);
+		std::cout<<"Addition results:\n";
+		res.output();
+	}
+	else if (num_oper == 2){
+		CSR_format mat;
+		std::cout<<"Enter matrix:\n";
+		mat.input();
+		std::cout<<"Enter scalar: ";
+		float scalar;
+		std::cin>>scalar;
+		std::cout<<"Results of matrix-scalar multiplication: \n";
+		CSR_format res = matrix_const_multiply(scalar, mat);
+		res.output();		
+	}
+	else if (num_oper == 3){
+		CSR_format mat1;
+		CSR_format mat2;
+		std::cout<<"Enter matrix 1:\n";
+		mat1.input();
+		std::cout<<"Enter matrix 2:\n";
+		mat2.input();
+		CSR_format res = matrix_multiply(mat1, mat2);
+		std::cout<<"Results of matrix multiplication:\n";
+		res.output();
+	}
+	else{
+		std::cout << "ERROR: Invalid operation number entered.";
+	}
+}
+
+void task3(){
+	CSR_format mat;
+	mat.input();
+	find_det(mat.csr_to_std());
+}
+
+void test3(){
+	std::vector<std::vector<float>> mat = {{9, 1, 3}, {3, 192, 4}, {-5, 8, 2}};
+	find_det(mat);
+}
+
+
 
 void test2(){
 	//Тест сложения двух матриц.
@@ -64,8 +119,8 @@ void test2(){
 }
 
 int main(){
-    task1();
-	// test2();
-    // test3();
+    // task1();
+	// task2();
+	// task3();
     return 0;
 }

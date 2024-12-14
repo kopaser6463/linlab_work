@@ -70,13 +70,11 @@ void CSR_format::input(){
 	std::string numb;
 	std::string read;
 	std::string line_input;
-	
 	std::getline(std::cin, line_input);
 	line_input += ' ';
 	std::stringstream ss(line_input);
 	std::getline(ss, num, ' ');
 	std::getline(ss, numb);
-	
 	std::string buffer = "";
 	for (int i = 0; i < std::stoi(num); i++){
 		std::getline(std::cin, read);
