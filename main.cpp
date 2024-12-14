@@ -14,7 +14,7 @@ int test(){
 	CSR_format mat(array);
 	mat.input();
 	mat.output();
-
+	std::cout << "\n";
 	return 0;
 }
 int input_output_determ(){
@@ -43,15 +43,16 @@ void test2(){
 	}
 	std::cout << "\n";
 	mat2_1.output();
+	std::cout << "\n";
 	mat2_2.output();
-	std::cout << mat2_1.matrix_value(1,1) << "\n";
+	//std::cout << mat2_1.matrix_value(1,1) << "\n";
 	std::cout << "\n";
 	//matrix_multiply_v2(mat2_1, mat2_2);
 }
 
 int main(){
-    //test();
-	  test2();
+    test();
+	test2();
     test3();
     return 0;
 }

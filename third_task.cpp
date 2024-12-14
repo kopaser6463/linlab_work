@@ -14,10 +14,10 @@ static void find_det(std::vector<std::vector<float>> mat){
             det *= mat[i][i];
         }
         if (det != 0){
-            std::cout<<"Det = " << det << "\nДа, существует обратная матрица данной.";
+            std::cout<<"Det = " << det << "\nДа, существует обратная матрица данной." << std::endl;
         }
         else{
-            std::cout<<"Det = " << det << "\nНет, не существует обратная матрица данной.";
+            std::cout<<"Det = " << det << "\nНет, не существует обратная матрица данной." << std::endl;
         }
     }
     else{

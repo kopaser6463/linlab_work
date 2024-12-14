@@ -62,6 +62,7 @@ void CSR_format::output(){
 }
 
 void CSR_format::input(){
+	std::cout << "Input 2 number and matrix." << "\n";
 	std::vector<std::string> a;
 	std::string num;
 	std::string numb;
@@ -95,9 +96,9 @@ void CSR_format::input(){
 	int numm = std::stoi(num);
 	int numbm = a.size()/numm;
 	
-	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
+	std::vector<std::vector<float>> array(numbm, std::vector<float> (numm));
 	for (int i = 0; i < a.size(); i++){
-		array[(i) % numm][(i)/(numm)] = (float)std::stof(a[i]);
+		array[(i)/(numm)][(i) % numm] = (float)std::stof(a[i]);
 	}
 	this->n = array.size();
 	this->m = array[0].size();
