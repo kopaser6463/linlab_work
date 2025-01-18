@@ -110,26 +110,23 @@ static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
 */
 static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 	if (mat1.m == mat2.n){
-		auto A = mat1;
-		auto B = mat2;
-		int s;
+		float s;
 		int x;
-		std::vector<std::vector<float>> v_res(0, std::vector<float> (0));
+		std::vector<std::vector<float>> v_res(mat1.n, std::vector<float> (mat2.m, 0));
 		for(int i = 0; i < mat1.value.size(); i++){
-			x = A.row[i];
-			for(int ii = 0; ii < B.n; ii++){
-				if(B.matrix_value(ii+1,A.col[i]+1) != 0){
-					s = A.matrix_value(A.col[i]+1,x+1) * B.matrix_value(ii+1,A.col[i]+1);
-					std::cout << s << " " << x << " " << ii;
-					std::cout << "\n";
-					
+			x = mat1.row[i];
+			for(int ii = 0; ii < mat2.n; ii++){
+				if(mat2.matrix_value(mat1.col[i]+1, ii+1) != 0){
+					v_res[i][ii] += mat1.matrix_value(x+1, mat1.col[i]+1) * mat2.matrix_value(mat1.col[i]+1, ii+1);
 				}
 			}
 		}
 		CSR_format res(v_res);
 		return v_res;
-	}
+	}	
 	else{
 		throw std::runtime_error("Matrix multiplication is impossible. The number of columns in the first matrix and the number of rows in the second don't match."); 
 	}
 }
+
+
