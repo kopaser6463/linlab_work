@@ -26,7 +26,7 @@ void task1(){
 		std::cin>>row;
 		std::cout<<"Enter col number: ";
 		std::cin>>col;
-		std::cout<<"Element [" << row << "][" << col << "] = " << mat.matrix_value(col, row);
+		std::cout<<"Element [" << row << "][" << col << "] = " << mat.matrix_value(row, col);
 	}
 	else{
 		std::cout << "ERROR: Invalid operation number entered.";
@@ -85,37 +85,40 @@ void task3(){
 
 
 void test2(){
-	//Тест сложения двух матриц.
-	std::vector<std::vector<float>> matrix1 = {{1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 0, 1}};
-	std::vector<std::vector<float>> matrix2 = {{0, 1, 0, 1, 1, 0}, {1, 0, 0, 1, 0, 0}};
-	CSR_format mat1(matrix1);
-	CSR_format mat2(matrix2);
-	CSR_format mat = sum_matrix(mat1, mat2);
-	for (int i = 0; i < mat.value.size(); i++){
-		std::cout << i << " [" << mat.row[i] << "][" << mat.col[i] << "] = " << mat.value[i] << std::endl;
-	}
-	//Тест умножения двух матрицю
-	std::cout << "\n\n\n";
+	// //Тест сложения двух матриц.
+	// std::vector<std::vector<float>> matrix1 = {{1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 0, 1}};
+	// std::vector<std::vector<float>> matrix2 = {{0, 1, 0, 1, 1, 0}, {1, 0, 0, 1, 0, 0}};
+	// CSR_format mat1(matrix1);
+	// CSR_format mat2(matrix2);
+	// CSR_format mat = sum_matrix(mat1, mat2);
+	// for (int i = 0; i < mat.value.size(); i++){
+	// 	std::cout << i << " [" << mat.row[i] << "][" << mat.col[i] << "] = " << mat.value[i] << std::endl;
+	// }
+	// //Тест умножения двух матрицю
+	// std::cout << "\n\n\n";
 	std::vector<std::vector<float>> matrix2_1 = {{2, 0, 3}, {0, 0, 0}, {0, 7, 0}};
-	std::vector<std::vector<float>> matrix2_2 = {{0, 9, 2}, {4, 0, 3}, {0, 0, 0}};
+	std::vector<std::vector<float>> matrix2_2 = {{0, 9, 2}, {4, 0, 3}, {0, 2, 0}};
 	CSR_format mat2_1(matrix2_1);
 	CSR_format mat2_2(matrix2_2);
-	CSR_format res = matrix_multiply(mat2_1, mat2_2);
+	CSR_format res = matrix_multiply_v2(mat2_1, mat2_2);
 	for (int i = 0; i < res.value.size(); i++){
+		std::cout << i << " [" << res.row[i] << "][" << res.col[i] << "] = " << res.value[i] << std::endl;
+	}
+	std::cout<<"\n";
+    res = matrix_multiply(mat2_1, mat2_2);
+    for (int i = 0; i < res.value.size(); i++){
 		std::cout << i << " [" << res.row[i] << "][" << res.col[i] << "] = " << res.value[i] << std::endl;
 	}
 	std::cout << "\n";
 	mat2_1.output();
 	std::cout << "\n";
 	mat2_2.output();
-	//std::cout << mat2_1.matrix_value(1,1) << "\n";
-	std::cout << "\n";
-	//matrix_multiply_v2(mat2_1, mat2_2);
 }
 
 int main(){
     //task1();
-	task2();
+	// task2();
 	// task3();
-    return 0;
+    test2();
+	return 0;
 }

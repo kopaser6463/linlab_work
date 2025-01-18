@@ -34,13 +34,17 @@ std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	return matrix;
 };
 
-float CSR_format::matrix_value(int col, int row){
-	for(int i = 0; i < this->row.size(); i ++){
-		if(this->row[i] == row-1 && this->col[i] == col-1){
-			return this->value[i];
+float CSR_format::matrix_value(int row, int col){
+	std::cout << row << ' ' << this-> n << '\n' << col << ' ' << this-> m;
+	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
+		for(int i = 0; i < this->row.size(); i ++){
+			if(this->row[i] == row-1 && this->col[i] == col-1){
+				return this->value[i];
+			}
 		}
+		return 0;
 	}
-	return 0;
+	throw std::runtime_error("Indexing error. The matrix element cannot be returned due to an incorrect index.");
 };
 
 void CSR_format::output(){
