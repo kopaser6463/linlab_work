@@ -101,7 +101,6 @@ static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
 }
 /*
  Функция выполняющая умножение 2 матриц между собой. (WIP)
- ДАННАЯ ФУНКЦИЯ НЕ РАБОТАЕТ, ДЛЯ УМНОЖЕНИЯ МАТРИЦ ИСПОЛЬЗУЙТЕ ФУНКЦИЮ ВЫШЕ.
  mat1 — Первая матрица (Левая)
  mat2 — Вторая матрица (Правая)
  @returns CSR_format
@@ -110,20 +109,33 @@ static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
 */
 static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 	if (mat1.m == mat2.n){
-		float s;
-		int x;
-		std::vector<std::vector<float>> v_res(mat1.n, std::vector<float> (mat2.m, 0));
-		for(int i = 0; i < mat1.value.size(); i++){
-			x = mat1.row[i];
-			for(int ii = 0; ii < mat2.n; ii++){
-				if(mat2.matrix_value(mat1.col[i]+1, ii+1) != 0){
-					v_res[i][ii] += mat1.matrix_value(x+1, mat1.col[i]+1) * mat2.matrix_value(mat1.col[i]+1, ii+1);
+		CSR_format res;
+		res.n = mat1.n;
+		res.m = mat2.m;
+		std::unordered_map<int, float> temp;
+		for(int i = 0; i < mat1.n; i++){
+			for (int j = 0; j < mat1.row.size(); j++){
+				if (mat1.row[j] == i){
+					int a_col = mat1.col[j];
+					float a_val = mat1.value[j];
+					for (int k = 0; k < mat2.row.size(); k++){
+						if (mat2.row[k] == a_col){
+							int b_col = mat2.col[k];
+							float b_val = mat2.value[k];
+							temp[b_col] += a_val * b_val;
+						}
+					}
 				}
 			}
+			for (const auto& entry : temp) {
+            	res.row.push_back(i);
+            	res.col.push_back(entry.first);
+            	res.value.push_back(entry.second);
+        	}
+        	temp.clear();
 		}
-		CSR_format res(v_res);
-		return v_res;
-	}	
+		return res;
+		}
 	else{
 		throw std::runtime_error("Matrix multiplication is impossible. The number of columns in the first matrix and the number of rows in the second don't match."); 
 	}

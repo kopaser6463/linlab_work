@@ -1,5 +1,4 @@
 #include "first_task.h"
-#include <sstream>
 
 //Стандартный метод создания класса разряженной матрицы из обычной.
 CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
