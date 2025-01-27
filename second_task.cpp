@@ -130,4 +130,46 @@ static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 	}
 }
 
+/*
+ Функция выполняющая умножение 2 матриц между собой. (WIP)
+ mat1 — Первая матрица (Левая)
+ mat2 — Вторая матрица (Правая)
+ @returns CSR_format
+ Данная функции выполняет умножение матриц без их перевода в обычный вид.
+
+*/
+static CSR_format matrix_multiply_mem(CSR_format mat1, CSR_format mat2){
+	if (mat1.m == mat2.n){
+		CSR_format res;
+		res.n = mat1.n;
+		res.m = mat2.m;
+		std::unordered_map<int, float> temp;
+		for(int i = 0; i < mat1.n; i++){
+			for (int j = 0; j < mat1.row.size(); j++){
+				if (mat1.row[j] == i){
+					int a_col = mat1.col[j];
+					float a_val = mat1.value[j];
+					for (int k = 0; k < mat2.row.size(); k++){
+						if (mat2.row[k] == a_col){
+							int b_col = mat2.col[k];
+							float b_val = mat2.value[k];
+							temp[b_col] += a_val * b_val;
+						}
+					}
+				}
+			}
+			for (const auto& entry : temp) {
+            	res.row.push_back(i);
+            	res.col.push_back(entry.first);
+            	res.value.push_back(entry.second);
+        	}
+        	temp.clear();
+		}
+		return res;
+		}
+	else{
+		throw std::runtime_error("Matrix multiplication is impossible. The number of columns in the first matrix and the number of rows in the second don't match."); 
+	}
+}
+
 
