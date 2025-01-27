@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-
+#include <unordered_map>
 class CSR_format{
 public:
     unsigned int n;
