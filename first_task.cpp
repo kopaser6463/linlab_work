@@ -25,7 +25,7 @@ float CSR_format::trace(){
     }
     return res;
 };
-
+//Метод класса возвращающий матрицу в обычном виде.
 std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
 	for (unsigned int i = 0; i < value.size(); i++){
@@ -33,9 +33,9 @@ std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	}
 	return matrix;
 };
-
+//Метод класса возвращающий значение из матрицы по индексу, из разряженного вида.
 float CSR_format::matrix_value(unsigned int row, unsigned int col){
-	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
+	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){  //Если запрошенный элемент вне матрицы вернуть ошибку.
 		for(unsigned int i = 0; i < this->row.size(); i ++){
 			if(this->row[i] == row-1 && this->col[i] == col-1){
 				return this->value[i];
@@ -45,7 +45,7 @@ float CSR_format::matrix_value(unsigned int row, unsigned int col){
 	}
 	throw std::runtime_error("Indexing error. The matrix element cannot be returned due to an incorrect index.");
 };
-
+//Метод класса осуществляющий вывод значений матрицы в разряженном виде.
 void CSR_format::output(){
 	std::cout << "value: ";
 	for (float i: this->value){
@@ -65,7 +65,7 @@ void CSR_format::output(){
 	std::cout << "rows: " << this->n << " " << "cols: " << this->m;
 	std::cout << "\n";
 }
-
+//Метод класса осуществляющий ввод матрицы в рязряженный вид из stdin.
 void CSR_format::input(){
 	std::cout << "Enter the matrix size and the matrix itself.\n";
 	std::vector<std::string> a;
@@ -76,8 +76,8 @@ void CSR_format::input(){
 	std::getline(std::cin, line_input);
 	line_input += ' ';
 	std::stringstream ss(line_input);
-	std::getline(ss, num, ' ');
-	std::getline(ss, numb);
+	std::getline(ss, num, ' ');  //Чтение числа столбцов.
+	std::getline(ss, numb);      //Чтение числа строк, (не используется)
 	std::string buffer = "";
 	for (unsigned int i = 0; i < std::stoi(num); i++){
 		std::getline(std::cin, read);
