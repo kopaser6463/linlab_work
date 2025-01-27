@@ -6,8 +6,8 @@
 
 class CSR_format{
 public:
-    short n;
-	short m;
+    long n;
+	long m;
 	std::vector<int>row;
 	std::vector<int>col;
 	std::vector<float>value;

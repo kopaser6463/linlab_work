@@ -5,8 +5,8 @@
 CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 		this->n = matrix_std.size();
 		this->m = matrix_std[0].size();
-		for (int i = 0; i < n; i++){
-			for (int j = 0; j < m; j++){
+		for (long i = 0; i < n; i++){
+			for (long j = 0; j < m; j++){
 				if (matrix_std[i][j] != 0){
 					this->row.push_back(i);
 					this->col.push_back(j);
@@ -28,14 +28,14 @@ float CSR_format::trace(){
 
 std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
-	for (int i = 0; i < value.size(); i++){
+	for (long i = 0; i < value.size(); i++){
 		matrix[row[i]][col[i]] = value[i];
 	}
 	return matrix;
 };
 
 float CSR_format::matrix_value(int row, int col){
-	std::cout << row << ' ' << this-> n << '\n' << col << ' ' << this-> m;
+	//std::cout << row << ' ' << col << '\n';
 	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
 		for(int i = 0; i < this->row.size(); i ++){
 			if(this->row[i] == row-1 && this->col[i] == col-1){
@@ -80,11 +80,11 @@ void CSR_format::input(){
 	std::getline(ss, num, ' ');
 	std::getline(ss, numb);
 	std::string buffer = "";
-	for (int i = 0; i < std::stoi(num); i++){
+	for (long i = 0; i < std::stoi(num); i++){
 		std::getline(std::cin, read);
 		read += ' ';
 		buffer = "";
-		for (int j = 0; j <= read.length(); j ++){
+		for (long j = 0; j <= read.length(); j ++){
 			if (read[j] != ' '){
 				buffer += read[j];	
 			}
@@ -97,17 +97,17 @@ void CSR_format::input(){
 		}
 	}
 	
-	int numm = std::stoi(num);
-	int numbm = a.size()/numm;
+	long numm = std::stoi(num);
+	long numbm = a.size()/numm;
 	
 	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
-	for (int i = 0; i < a.size(); i++){
+	for (long i = 0; i < a.size(); i++){
 		array[(i)/(numbm)][(i) % numbm] = (float)std::stof(a[i]);
 	}
 	this->n = array.size();
 	this->m = array[0].size();
-	for (int i = 0; i < n; i++){
-		for (int j = 0; j < m; j++){
+	for (long i = 0; i < n; i++){
+		for (long j = 0; j < m; j++){
 			if (array[i][j] != 0){
 				this->row.push_back(i);
 				this->col.push_back(j);
