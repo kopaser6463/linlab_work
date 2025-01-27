@@ -134,9 +134,9 @@ int test5(){
 	assert((mat3.value == res1.value));
 	assert((mat3.row   == res1.row));
 	assert((mat3.col   == res1.col));
-	// assert((mat3.value == res2.value));
-	// assert((mat3.row   == res2.row));
-	// assert((mat3.col   == res2.col));
+	assert((mat3.value == res2.value));
+	assert((mat3.row   == res2.row));
+	assert((mat3.col   == res2.col));
 	
 	
 	return 0;
@@ -179,7 +179,7 @@ int main(){
 	test2();
 	test3();
 	test4();
-	// test5();
+	test5();
     test6();
 	test7();
     return 0;
