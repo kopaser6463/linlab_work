@@ -5,8 +5,8 @@
 CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 		this->n = matrix_std.size();
 		this->m = matrix_std[0].size();
-		for (int i = 0; i < n; i++){
-			for (int j = 0; j < m; j++){
+		for (unsigned int i = 0; i < n; i++){
+			for (unsigned int j = 0; j < m; j++){
 				if (matrix_std[i][j] != 0){
 					this->row.push_back(i);
 					this->col.push_back(j);
@@ -18,26 +18,25 @@ CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 //Метод класса, возвращаюший след разряженной матрицы.
 float CSR_format::trace(){
     float res = 0;
-    for (int i = 0; i < value.size(); i++){
+    for (unsigned int i = 0; i < value.size(); i++){
         if (row[i] == col[i]){
             res += value[i];
         }
     }
     return res;
 };
-
+//Метод класса возвращающий матрицу в обычном виде.
 std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
-	for (int i = 0; i < value.size(); i++){
+	for (unsigned int i = 0; i < value.size(); i++){
 		matrix[row[i]][col[i]] = value[i];
 	}
 	return matrix;
 };
-
-float CSR_format::matrix_value(int row, int col){
-	std::cout << row << ' ' << this-> n << '\n' << col << ' ' << this-> m;
-	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
-		for(int i = 0; i < this->row.size(); i ++){
+//Метод класса возвращающий значение из матрицы по индексу, из разряженного вида.
+float CSR_format::matrix_value(unsigned int row, unsigned int col){
+	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){  //Если запрошенный элемент вне матрицы вернуть ошибку.
+		for(unsigned int i = 0; i < this->row.size(); i ++){
 			if(this->row[i] == row-1 && this->col[i] == col-1){
 				return this->value[i];
 			}
@@ -46,7 +45,7 @@ float CSR_format::matrix_value(int row, int col){
 	}
 	throw std::runtime_error("Indexing error. The matrix element cannot be returned due to an incorrect index.");
 };
-
+//Метод класса осуществляющий вывод значений матрицы в разряженном виде.
 void CSR_format::output(){
 	std::cout << "value: ";
 	for (float i: this->value){
@@ -54,19 +53,19 @@ void CSR_format::output(){
 	}
 	std::cout << "\n";
 	std::cout << "row:   ";
-	for (float i: this->row){
+	for (unsigned int i: this->row){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
 	std::cout << "col:   ";
-	for (float i: this->col){
+	for (unsigned int i: this->col){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
 	std::cout << "rows: " << this->n << " " << "cols: " << this->m;
 	std::cout << "\n";
 }
-
+//Метод класса осуществляющий ввод матрицы в рязряженный вид из stdin.
 void CSR_format::input(){
 	std::cout << "Enter the matrix size and the matrix itself.\n";
 	std::vector<std::string> a;
@@ -77,14 +76,14 @@ void CSR_format::input(){
 	std::getline(std::cin, line_input);
 	line_input += ' ';
 	std::stringstream ss(line_input);
-	std::getline(ss, num, ' ');
-	std::getline(ss, numb);
+	std::getline(ss, num, ' ');  //Чтение числа столбцов.
+	std::getline(ss, numb);      //Чтение числа строк, (не используется)
 	std::string buffer = "";
-	for (int i = 0; i < std::stoi(num); i++){
+	for (unsigned int i = 0; i < std::stoi(num); i++){
 		std::getline(std::cin, read);
 		read += ' ';
 		buffer = "";
-		for (int j = 0; j <= read.length(); j ++){
+		for (unsigned int j = 0; j <= read.length(); j ++){
 			if (read[j] != ' '){
 				buffer += read[j];	
 			}
@@ -97,17 +96,17 @@ void CSR_format::input(){
 		}
 	}
 	
-	int numm = std::stoi(num);
-	int numbm = a.size()/numm;
+	unsigned int numm = std::stoi(num);
+	unsigned int numbm = a.size()/numm;
 	
 	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
-	for (int i = 0; i < a.size(); i++){
+	for (unsigned int i = 0; i < a.size(); i++){
 		array[(i)/(numbm)][(i) % numbm] = (float)std::stof(a[i]);
 	}
 	this->n = array.size();
 	this->m = array[0].size();
-	for (int i = 0; i < n; i++){
-		for (int j = 0; j < m; j++){
+	for (unsigned int i = 0; i < n; i++){
+		for (unsigned int j = 0; j < m; j++){
 			if (array[i][j] != 0){
 				this->row.push_back(i);
 				this->col.push_back(j);
