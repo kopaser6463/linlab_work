@@ -117,7 +117,7 @@ static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 			x = mat1.row[i];
 			for(int ii = 0; ii < mat2.n; ii++){
 				if(mat2.matrix_value(mat1.col[i]+1, ii+1) != 0){
-					v_res[i][ii] += mat1.matrix_value(x+1, mat1.col[i]+1) * mat2.matrix_value(mat1.col[i]+1, ii+1);
+					v_res[x][ii] += mat1.matrix_value(x+1, mat1.col[i]+1) * mat2.matrix_value(mat1.col[i]+1, ii+1);
 				}
 			}
 		}
