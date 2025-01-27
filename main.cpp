@@ -2,13 +2,6 @@
 #include "second_task.cpp"
 #include "third_task.cpp"
 
-void test3(){
-	//Тест нахождения определителя матрицы.
-	std::vector<std::vector<float>> mat = {{9, 1, 3}, {3, 192, 4}, {-5, 8, 2}};
-	find_det(mat);
-}
-
-
 void task1(){
   //Базовый тест проверяющий работу ввода и вывода значений матрицы.
 	CSR_format mat;
@@ -96,8 +89,8 @@ void test2(){
 	// }
 	// //Тест умножения двух матрицю
 	// std::cout << "\n\n\n";
-	std::vector<std::vector<float>> matrix2_1 = {{2, 0, 3}, {0, 0, 0}, {0, 7, 0}};
-	std::vector<std::vector<float>> matrix2_2 = {{0, 9, 2}, {4, 0, 3}, {0, 2, 0}};
+	std::vector<std::vector<float>> matrix2_1 = {{2, 0}, {0, 0}, {0, 7}};
+	std::vector<std::vector<float>> matrix2_2 = {{0, 9, 2}, {4, 0, 3}};
 	CSR_format mat2_1(matrix2_1);
 	CSR_format mat2_2(matrix2_2);
 	CSR_format res = matrix_multiply_v2(mat2_1, mat2_2);
@@ -116,9 +109,9 @@ void test2(){
 }
 
 int main(){
-    //task1();
+    // task1();
 	// task2();
 	// task3();
-    test2();
+	test2();
 	return 0;
 }

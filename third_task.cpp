@@ -9,10 +9,39 @@ static void find_det(std::vector<std::vector<float>> mat){
 	//Чтобы определить сушествует матрица обратная данной или нет, достаточно знать значение её определителя, если он равен 0 - обратной матрици нет.
 	//Для подсчета определителя, использован алгоритм позволяющий посчитать определитель перемножением элементов главной диагонали.
     if (mat.size() == mat[0].size()){
-        for (int i = 0; i < mat.size() - 1; i++){
-            for (int j = i+1; j < mat.size(); j++){
-                float koef = mat[j][i] / mat[i][i]; 
-                for (int k = i; k < mat.size(); k++){
+        float sum_c = 0;
+        float sum_r = 0;
+        for (unsigned int i = 0; i < mat.size(); i++){
+            for (unsigned int j = 0; j < mat.size(); j++){
+                sum_c += mat[j][i];
+                sum_r += mat[i][j];
+            }
+            if ((sum_c == 0) || (sum_r == 0)){
+                std::cout<<"Det = " << 0 << "\nNo, there is no inverse matrix for this one." << std::endl;
+                return;
+            }
+            else{
+                sum_c = 0;
+                sum_r = 0;
+            }
+        }
+        float koef;
+        short inv_det = 1;
+        for (unsigned int i = 0; i < mat.size() - 1; i++){
+            for (unsigned int j = i+1; j < mat.size(); j++){
+                if (mat[i][i] != 0){
+                    koef = mat[j][i] / mat[i][i];
+                }
+                else{
+                    for (unsigned int k = j; k < mat.size(); k++){
+                        if (mat[k][i] != 0){
+                            swap(mat[i], mat[j]);
+                            j--;
+                            inv_det *= -1;
+                        }
+                    }
+                }
+                for (unsigned int k = i; k < mat.size(); k++){
                     mat[j][k] -= mat[i][k] * koef;
 				}
             }
@@ -22,7 +51,7 @@ static void find_det(std::vector<std::vector<float>> mat){
             det *= mat[i][i];
         }
         if (det != 0){
-            std::cout<<"Det = " << det << "\nYes, there is an inverse matrix of this one." << std::endl;
+            std::cout<<"Det = " << det * inv_det << "\nYes, there is an inverse matrix of this one." << std::endl;
         }
         else{
             std::cout<<"Det = " << det << "\nNo, there is no inverse matrix for this one." << std::endl;

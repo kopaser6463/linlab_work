@@ -5,8 +5,8 @@
 CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 		this->n = matrix_std.size();
 		this->m = matrix_std[0].size();
-		for (long i = 0; i < n; i++){
-			for (long j = 0; j < m; j++){
+		for (unsigned int i = 0; i < n; i++){
+			for (unsigned int j = 0; j < m; j++){
 				if (matrix_std[i][j] != 0){
 					this->row.push_back(i);
 					this->col.push_back(j);
@@ -18,7 +18,7 @@ CSR_format::CSR_format(std::vector<std::vector<float>> matrix_std){
 //Метод класса, возвращаюший след разряженной матрицы.
 float CSR_format::trace(){
     float res = 0;
-    for (int i = 0; i < value.size(); i++){
+    for (unsigned int i = 0; i < value.size(); i++){
         if (row[i] == col[i]){
             res += value[i];
         }
@@ -28,16 +28,16 @@ float CSR_format::trace(){
 
 std::vector<std::vector<float>> CSR_format::csr_to_std(){
 	std::vector<std::vector<float>> matrix (n, std::vector<float> (m, 0));
-	for (long i = 0; i < value.size(); i++){
+	for (unsigned int i = 0; i < value.size(); i++){
 		matrix[row[i]][col[i]] = value[i];
 	}
 	return matrix;
 };
 
-float CSR_format::matrix_value(int row, int col){
-	//std::cout << row << ' ' << col << '\n';
+float CSR_format::matrix_value(unsigned int row, unsigned int col){
+	// std::cout << row << ' ' << col << '\n';
 	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
-		for(int i = 0; i < this->row.size(); i ++){
+		for(unsigned int i = 0; i < this->row.size(); i ++){
 			if(this->row[i] == row-1 && this->col[i] == col-1){
 				return this->value[i];
 			}
@@ -54,12 +54,12 @@ void CSR_format::output(){
 	}
 	std::cout << "\n";
 	std::cout << "row:   ";
-	for (float i: this->row){
+	for (unsigned int i: this->row){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
 	std::cout << "col:   ";
-	for (float i: this->col){
+	for (unsigned int i: this->col){
 		std::cout << i << " ";
 	}
 	std::cout << "\n";
@@ -80,11 +80,11 @@ void CSR_format::input(){
 	std::getline(ss, num, ' ');
 	std::getline(ss, numb);
 	std::string buffer = "";
-	for (long i = 0; i < std::stoi(num); i++){
+	for (unsigned int i = 0; i < std::stoi(num); i++){
 		std::getline(std::cin, read);
 		read += ' ';
 		buffer = "";
-		for (long j = 0; j <= read.length(); j ++){
+		for (unsigned int j = 0; j <= read.length(); j ++){
 			if (read[j] != ' '){
 				buffer += read[j];	
 			}
@@ -97,17 +97,17 @@ void CSR_format::input(){
 		}
 	}
 	
-	long numm = std::stoi(num);
-	long numbm = a.size()/numm;
+	unsigned int numm = std::stoi(num);
+	unsigned int numbm = a.size()/numm;
 	
 	std::vector<std::vector<float>> array(numm, std::vector<float> (numbm));
-	for (long i = 0; i < a.size(); i++){
+	for (unsigned int i = 0; i < a.size(); i++){
 		array[(i)/(numbm)][(i) % numbm] = (float)std::stof(a[i]);
 	}
 	this->n = array.size();
 	this->m = array[0].size();
-	for (long i = 0; i < n; i++){
-		for (long j = 0; j < m; j++){
+	for (unsigned int i = 0; i < n; i++){
+		for (unsigned int j = 0; j < m; j++){
 			if (array[i][j] != 0){
 				this->row.push_back(i);
 				this->col.push_back(j);

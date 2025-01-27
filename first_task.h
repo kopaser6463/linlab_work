@@ -6,17 +6,17 @@
 
 class CSR_format{
 public:
-    long n;
-	long m;
-	std::vector<int>row;
-	std::vector<int>col;
+    unsigned int n;
+	unsigned int m;
+	std::vector<unsigned int>row;
+	std::vector<unsigned int>col;
 	std::vector<float>value;
 
 	CSR_format(std::vector<std::vector<float>> matrix_std);
 	CSR_format(){};
     float trace();
     std::vector<std::vector<float>> csr_to_std();
-	float matrix_value(const int col, const int row);
+	float matrix_value(const unsigned int col, const unsigned int row);
 	void output();
 	void input();
 };
