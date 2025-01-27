@@ -35,7 +35,6 @@ std::vector<std::vector<float>> CSR_format::csr_to_std(){
 };
 
 float CSR_format::matrix_value(unsigned int row, unsigned int col){
-	// std::cout << row << ' ' << col << '\n';
 	if ((row<=this->n) && (row > 0) && (col > 0) && (col<=this->m)){
 		for(unsigned int i = 0; i < this->row.size(); i ++){
 			if(this->row[i] == row-1 && this->col[i] == col-1){

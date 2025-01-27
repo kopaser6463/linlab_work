@@ -114,10 +114,8 @@ static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 		for(unsigned int i = 0; i < mat1.value.size(); i++){
 			x = mat1.row[i];
 			for(unsigned int ii = 0; ii < mat2.n; ii++){
-				// std::cout<< "mat2:";
 				float v = mat2.matrix_value(mat1.col[i]+1, ii+1);
 				if(v != 0){
-					// std::cout<< "mat1:";
 					v_res[x][ii] += mat1.matrix_value(x+1, mat1.col[i]+1) * v;
 				}
 			}
