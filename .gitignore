@@ -1,3 +1,5 @@
 build/
 *.un~
 .vscode
+main.exe
+test.exe

@@ -14,8 +14,8 @@ static CSR_format sum_matrix(CSR_format mat1, CSR_format mat2){
 	//Если они не совподают есть два варианта, либо это элемент которого нет в первой матрице, либо наоборот его нет уже во второй.
 	//В таких случаях соответственно выпоняется либо добавление нового элемента в матрицу или пропуск так как он уже там есть.
 	if ((mat1.m == mat2.m) && (mat1.n == mat2.n)){
-		short iter1 = 0;
-		short iter2 = 0;
+		unsigned int iter1 = 0;
+		unsigned int iter2 = 0;
 		while ((iter1 < mat1.row.size()) && (iter2 < mat2.row.size())){
 			if ((mat1.row[iter1] == mat2.row[iter2]) && (mat1.col[iter1] == mat2.col[iter2])){
 				mat1.value[iter1] += mat2.value[iter2];
@@ -58,7 +58,7 @@ static CSR_format sum_matrix(CSR_format mat1, CSR_format mat2){
 static CSR_format matrix_const_multiply(const float number, CSR_format mat){
 	//Чтобы умножить все значения матрицы в данном формате, достаточно домножить все элементы массива values.
 	if (number != 0){
-		for (int i = 0; i < mat.value.size(); i++){
+		for (unsigned int i = 0; i < mat.value.size(); i++){
 			mat.value[i] *=  number;
 		}
 	}
@@ -85,9 +85,9 @@ static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
 		auto A = mat1.csr_to_std();
 		auto B = mat2.csr_to_std();
 		std::vector<std::vector<float>> v_res(mat1.n, std::vector<float> (mat2.m, 0));
-		for(int i = 0; i < mat1.n; i++){
-			for(int j = 0; j < mat2.m; j++){
-				for(int k = 0; k < mat1.m; k++){
+		for(unsigned int i = 0; i < mat1.n; i++){
+			for(unsigned int j = 0; j < mat2.m; j++){
+				for(unsigned int k = 0; k < mat1.m; k++){
 					v_res[i][j] += A[i][k] * B[k][j];
 				}
 			}
@@ -100,20 +100,18 @@ static CSR_format matrix_multiply(CSR_format mat1, CSR_format mat2){
 	}
 }
 /*
- Функция выполняющая умножение 2 матриц между собой. (WIP)
- ДАННАЯ ФУНКЦИЯ НЕ РАБОТАЕТ, ДЛЯ УМНОЖЕНИЯ МАТРИЦ ИСПОЛЬЗУЙТЕ ФУНКЦИЮ ВЫШЕ.
+ Функция выполняющая умножение 2 матриц между собой без их перевода в обычный вид.
  mat1 — Первая матрица (Левая)
  mat2 — Вторая матрица (Правая)
  @returns CSR_format
- Данная функции выполняет умножение матриц без их перевода в обычный вид.
 
 */
 static CSR_format matrix_multiply_v2(CSR_format mat1, CSR_format mat2){
 	if (mat1.m == mat2.n){
 		float s;
-		int x;
+		unsigned int x;
 		std::vector<std::vector<float>> v_res(mat1.n, std::vector<float> (mat2.m, 0));
-		for(int i = 0; i < mat1.value.size(); i++){
+		for(unsigned int i = 0; i < mat1.value.size(); i++){
 			x = mat1.row[i];
 			for(int ii = 0; ii < mat2.n; ii++){
 				if ((mat1.col[i]+1 <= mat2.n) && (mat1.col[i]+1 > 0) && (ii+1 > 0) && (ii+1 <= mat2.m)){
